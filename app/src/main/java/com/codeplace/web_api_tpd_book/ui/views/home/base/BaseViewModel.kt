@@ -1,0 +1,31 @@
+package com.codeplace.web_api_tpd_book.ui.views.home.base
+
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.codeplace.web_api_tpd_book.webapi.BookService
+import com.codeplace.web_api_tpd_book.webapi.models.BookDto
+import kotlinx.coroutines.launch
+import retrofit2.Response
+// I need to call the api here.
+
+private const val TAG = "BookWebClientApi"
+open class BaseViewModel:ViewModel() {
+     fun fetchData(liveData: MutableLiveData<List<BookDto>>, service: suspend ()-> Response<List<BookDto>?>){
+          viewModelScope.launch {
+               try {
+                    val response = service()
+                    if (response.isSuccessful){
+                        val jsonResponse = response.body()
+                           liveData.value = jsonResponse
+                    }
+               } catch (e: Exception) {
+                    Log.e(TAG, "fetchData", e)
+               }
+          }
+
+     }
+
+}
