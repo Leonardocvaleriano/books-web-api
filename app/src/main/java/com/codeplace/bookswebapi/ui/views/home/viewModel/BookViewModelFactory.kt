@@ -1,8 +1,8 @@
-package com.codeplace.web_api_tpd_book.ui.views.home.viewModel
+package com.codeplace.bookswebapi.ui.views.home.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.codeplace.web_api_tpd_book.repository.BookRepository
+import com.codeplace.bookswebapi.repository.BookRepository
 
 class BookViewModelFactory(
     private val repository:BookRepository

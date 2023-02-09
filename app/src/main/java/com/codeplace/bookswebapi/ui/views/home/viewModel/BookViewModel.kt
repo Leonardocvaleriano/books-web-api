@@ -1,10 +1,9 @@
-package com.codeplace.web_api_tpd_book.ui.views.home.viewModel
-import android.util.Log
+package com.codeplace.bookswebapi.ui.views.home.viewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.codeplace.web_api_tpd_book.repository.BookRepository
-import com.codeplace.web_api_tpd_book.ui.views.home.base.BaseViewModel
-import com.codeplace.web_api_tpd_book.webapi.models.BookDto
+import com.codeplace.bookswebapi.repository.BookRepository
+import com.codeplace.bookswebapi.ui.views.home.base.BaseViewModel
+import com.codeplace.bookswebapi.webapi.models.BookDto
+import org.json.JSONObject
 
 // This class keep all the data information, even if the activity has been destroyed for any life cycle.
 
@@ -13,6 +12,11 @@ class BookViewModel(private val bookRepository: BookRepository): BaseViewModel()
     val bookList = MutableLiveData<List<BookDto>>()
     fun getBookList() = fetchData(bookList) {
         bookRepository.getBooksList()
+    }
+
+    fun fillBookList(result: JSONObject){
+       val resulJSONArray =  result.getJSONArray("results")
+
     }
 
 //      Cod o qual mostra o momento o qual a viewModel e criada e destruida

@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.codeplace.justconsumeapiwithcall'
+    namespace 'com.codeplace.bookswebapi'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.codeplace.justconsumeapiwithcall"
+        applicationId 'com.codeplace.bookswebapi'
         minSdk 22
         targetSdk 33
         versionCode 1

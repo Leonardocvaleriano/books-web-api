@@ -1,12 +1,10 @@
-package com.codeplace.web_api_tpd_book.ui.views.home.base
+package com.codeplace.bookswebapi.ui.views.home.base
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codeplace.web_api_tpd_book.webapi.BookService
-import com.codeplace.web_api_tpd_book.webapi.models.BookDto
+import com.codeplace.bookswebapi.webapi.models.BookDto
 import kotlinx.coroutines.launch
 import retrofit2.Response
 // I need to call the api here.

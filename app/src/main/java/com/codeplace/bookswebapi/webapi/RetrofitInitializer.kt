@@ -1,4 +1,4 @@
-package com.codeplace.web_api_tpd_book.webapi
+package com.codeplace.bookswebapi.webapi
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

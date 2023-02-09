@@ -1,6 +1,6 @@
-package com.codeplace.web_api_tpd_book.webapi
+package com.codeplace.bookswebapi.webapi
 
-import com.codeplace.web_api_tpd_book.webapi.models.BookDto
+import com.codeplace.bookswebapi.webapi.models.BookDto
 import retrofit2.Response
 import retrofit2.http.GET
 

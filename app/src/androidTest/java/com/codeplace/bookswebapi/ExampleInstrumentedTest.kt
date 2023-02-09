@@ -1,4 +1,4 @@
-package com.codeplace.web_api_tpd_book
+package com.codeplace.bookswebapi
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
