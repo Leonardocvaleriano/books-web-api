@@ -17,8 +17,8 @@ open class BaseViewModel:ViewModel() {
                     val response = service()
                     if (response.isSuccessful){
                         val jsonResponse = response.body()
-                           liveData.value = jsonResponse
-                    }
+                         liveData.value = jsonResponse
+                     }
                } catch (e: Exception) {
                     Log.e(TAG, "fetchData", e)
                }

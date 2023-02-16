@@ -1,20 +1,24 @@
 package com.codeplace.bookswebapi.ui.views.home
 import android.os.Bundle
+import android.widget.ProgressBar
+import android.widget.Toast
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.codeplace.bookswebapi.databinding.ActivityDetailsBinding
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BookRepository
+import com.codeplace.bookswebapi.ui.views.home.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModel
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModelFactory
-import com.codeplace.bookswebapi.databinding.ActivityMainBinding
+import com.codeplace.bookswebapi.webapi.models.BookDto
 
 class HomeActivity : AppCompatActivity() {
 
+    private lateinit var booksListAdapter: BooksListAdapter
     private val binding by lazy {
-        //ActivityMainBinding.inflate(layoutInflater)
-        ActivityDetailsBinding.inflate(layoutInflater)
-    }
+        ActivityMainBinding.inflate(layoutInflater)
+     }
 
     private val viewModel by lazy {
         // we need to create this provider, because this viewModel has a dependency with the android framework which is the repository.
@@ -29,38 +33,37 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         initValues()
-        //initObservables()
-
-
-
+        initObservables()
+        
      }
 
     fun initValues(){
-         viewModel.getBookList()
+        binding.progressBar.visibility = ProgressBar.VISIBLE
+        viewModel.getBookList()
     }
 
-//    fun initObservables(){
-//        viewModel.bookList.observe(this, Observer {
-//           it.map {
-//               binding.txtTitle.setText(it.title)
-//               binding.txtAuthor.setText(it.author)
-//               binding.txtCurrency.setText(it.currencyCode)
-//               binding.txtPrice.setText(it.price.toString())
-//               binding.txtIsbn.setText(it.isbn)
-//           }
-//        })
+       private fun initObservables(){
+           viewModel.bookList.observe(this){
+               initRecyclerAdapter(it)
+           }
+       }
+
+//
+//    fun initBookList(result:JSONObject) {
+//        //mockSchedules(result)
+//        initRecyclerAdapter()
 //    }
 
 
-//     What do observables does?
-//     Implement the recyclerView
-//    fun initObservables(){
-//        viewModel.bookList.observe(this, Observer {
-//           initBooks(it as JSONObject)
-//        })
-//    }
-
-
+    fun initRecyclerAdapter(result:List<BookDto>){
+      with(binding){
+          recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
+          booksListAdapter = BooksListAdapter(result)
+          recyclerView.adapter = booksListAdapter
+      }
+        binding.progressBar.visibility = ProgressBar.GONE
+    }
+}
 //  What does a mock do
 //    private fun initBooks(result:JSONObject ) {
 //        mockBooks(result)
@@ -73,7 +76,6 @@ class HomeActivity : AppCompatActivity() {
 //    }
 //
 
-}
 
 
 

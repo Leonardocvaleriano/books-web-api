@@ -2,4 +2,12 @@
 
     <string name="description_title">Description</string>
     <string name="edit">Edit</string>
+    <string name="title">Title</string>
+    <string name="saveBtn">Save</string>
+    <string name="save">Save</string>
+    <string name="required" />
+    <string name="author">Author</string>
+    <string name="price">Price</string>
+    <string name="description">Write the description here...</string>
+    <string name="isbn">Isbn</string>
 </resources>

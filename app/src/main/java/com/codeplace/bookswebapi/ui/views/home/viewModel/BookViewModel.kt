@@ -15,7 +15,7 @@ class BookViewModel(private val bookRepository: BookRepository): BaseViewModel()
     }
 
     fun fillBookList(result: JSONObject){
-       val resulJSONArray =  result.getJSONArray("results")
+       val resultJSONArray =  result.getJSONArray("results")
 
     }
 
