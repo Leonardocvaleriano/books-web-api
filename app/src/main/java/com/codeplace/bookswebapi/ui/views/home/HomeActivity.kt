@@ -1,4 +1,5 @@
 package com.codeplace.bookswebapi.ui.views.home
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ProgressBar
 import androidx.appcompat.app.AppCompatActivity
@@ -32,7 +33,6 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         initValues()
         initObservables()
-        
      }
 
     fun initValues(){
@@ -40,27 +40,34 @@ class HomeActivity : AppCompatActivity() {
         viewModel.getBookList()
     }
 
-       private fun initObservables(){
+    private fun initObservables(){
            viewModel.bookList.observe(this){
                initRecyclerAdapter(it)
            }
-       }
-
+    }
 //
 //    fun initBookList(result:JSONObject) {
 //        //mockSchedules(result)
 //        initRecyclerAdapter()
 //    }
 
-
     fun initRecyclerAdapter(result:List<BookDto>){
       with(binding){
           recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
           booksListAdapter = BooksListAdapter(result)
           recyclerView.adapter = booksListAdapter
+          binding.progressBar.visibility = ProgressBar.GONE
       }
-        binding.progressBar.visibility = ProgressBar.GONE
+
+        booksListAdapter.onItemClick = {
+            val intent = Intent(this, DetailsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
+
+
 }
 //  What does a mock do
 //    private fun initBooks(result:JSONObject ) {
@@ -73,7 +80,6 @@ class HomeActivity : AppCompatActivity() {
 //        viewModel.fillBookList(result)
 //    }
 //
-
 
 
 
