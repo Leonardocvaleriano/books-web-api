@@ -12,5 +12,6 @@ interface BookService {
     // End point
     @GET("books")
     suspend fun getBooksList(): Response<List<BookDto>?>
-
+    @GET("books/id")
+    suspend fun getBookbyId(): Response<Int>
 }

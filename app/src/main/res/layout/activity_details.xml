@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".ui.views.home.DetailsActivity"
+    tools:context=".ui.views.detail.view.activity.DetailsActivity"
     >
 
     <androidx.cardview.widget.CardView
@@ -71,6 +71,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:layout_marginStart="2dp"
                 android:textSize="36sp"
                 app:layout_constraintStart_toEndOf="@id/txt_currency"
                 app:layout_constraintTop_toBottomOf="@id/txt_author"
@@ -110,13 +111,12 @@
                 android:id="@+id/txt_isbn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/scroll"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="22dp"
                 android:padding="10dp"
-                tools:text="978-3-16-148410-0"
                 android:textColor="@color/black"
-                >
-            </TextView>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="978-3-16-148410-0"></TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BookRepository
+import com.codeplace.bookswebapi.ui.views.detail.view.activity.DetailsActivity
 import com.codeplace.bookswebapi.ui.views.home.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModel
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModelFactory
@@ -35,7 +36,7 @@ class HomeActivity : AppCompatActivity() {
         initObservables()
      }
 
-    fun initValues(){
+    private fun initValues(){
         binding.progressBar.visibility = ProgressBar.VISIBLE
         viewModel.getBookList()
     }
@@ -51,23 +52,37 @@ class HomeActivity : AppCompatActivity() {
 //        initRecyclerAdapter()
 //    }
 
-    fun initRecyclerAdapter(result:List<BookDto>){
+    private fun initRecyclerAdapter(result:List<BookDto>){
       with(binding){
           recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
           booksListAdapter = BooksListAdapter(result)
           recyclerView.adapter = booksListAdapter
-          binding.progressBar.visibility = ProgressBar.GONE
       }
-
-        booksListAdapter.onItemClick = {
-            val intent = Intent(this, DetailsActivity::class.java)
-            startActivity(intent)
-        }
-
+        initDetailActivity()
+        binding.progressBar.visibility = ProgressBar.GONE
     }
 
+    private fun initDetailActivity(){
+        booksListAdapter.onItemClick = { book ->
+            val id = book.id
+            val title = book.title
+            val author = book.author
+            val currencyCode = book.currencyCode
+            val isbn = book.isbn.toString()
+            val price = book.price.toString()
 
+            Intent(this, DetailsActivity::class.java).also {
+                it.putExtra("EXTRA_ID", id)
+                it.putExtra("EXTRA_TITLE", title)
+                it.putExtra("EXTRA_AUTHOR", author)
+                it.putExtra("EXTRA_CURRENCY", currencyCode)
+                it.putExtra("EXTRA_ISBN", isbn)
+                it.putExtra("EXTRA_PRICE", price)
 
+            startActivity(it)
+            }
+        }
+    }
 }
 //  What does a mock do
 //    private fun initBooks(result:JSONObject ) {

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Webapitpdbook"
         tools:targetApi="31">
-        <activity android:name=".ui.views.home.DetailsActivity"/>
+        <activity android:name=".ui.views.detail.view.activity.DetailsActivity"/>
         <activity
             android:name="com.codeplace.bookswebapi.ui.views.home.HomeActivity"
             android:exported="true">
