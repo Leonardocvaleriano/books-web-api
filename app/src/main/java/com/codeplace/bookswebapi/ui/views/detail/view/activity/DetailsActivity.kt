@@ -19,11 +19,11 @@ class DetailsActivity: AppCompatActivity() {
         }
 
     fun initValues(){
-        val title = intent.getStringExtra("EXTRA_TITLE")
-        val author = intent.getStringExtra("EXTRA_AUTHOR")
-        val price = intent.getStringExtra("EXTRA_PRICE")
-        val currency = intent.getStringExtra("EXTRA_CURRENCY")
-        val isbn = intent.getStringExtra("EXTRA_ISBN")
+            val title = intent.getStringExtra("EXTRA_TITLE")
+            val author = intent.getStringExtra("EXTRA_AUTHOR")
+            val price = intent.getStringExtra("EXTRA_PRICE")
+            val currency = intent.getStringExtra("EXTRA_CURRENCY")
+            val isbn = intent.getStringExtra("EXTRA_ISBN")
 
 
             with(binding){

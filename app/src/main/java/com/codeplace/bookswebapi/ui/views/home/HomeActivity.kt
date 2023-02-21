@@ -68,8 +68,8 @@ class HomeActivity : AppCompatActivity() {
             val title = book.title
             val author = book.author
             val currencyCode = book.currencyCode
-            val isbn = book.isbn.toString()
             val price = book.price.toString()
+            val isbn = book.isbn.toString()
 
             Intent(this, DetailsActivity::class.java).also {
                 it.putExtra("EXTRA_ID", id)
@@ -78,7 +78,6 @@ class HomeActivity : AppCompatActivity() {
                 it.putExtra("EXTRA_CURRENCY", currencyCode)
                 it.putExtra("EXTRA_ISBN", isbn)
                 it.putExtra("EXTRA_PRICE", price)
-
             startActivity(it)
             }
         }
