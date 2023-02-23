@@ -1,4 +1,4 @@
-package com.codeplace.bookswebapi.webapi.models
+package com.codeplace.bookswebapi.ui.views.home.models
 
 data class BookDto(
     val id: Int?,

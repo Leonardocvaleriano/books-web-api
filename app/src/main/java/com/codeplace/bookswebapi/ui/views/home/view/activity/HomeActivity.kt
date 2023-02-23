@@ -1,4 +1,4 @@
-package com.codeplace.bookswebapi.ui.views.home
+package com.codeplace.bookswebapi.ui.views.home.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ProgressBar
@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BookRepository
-import com.codeplace.bookswebapi.ui.views.detail.view.activity.DetailsActivity
-import com.codeplace.bookswebapi.ui.views.home.adapter.BooksListAdapter
+import com.codeplace.bookswebapi.ui.views.details.view.activity.DetailsActivity
+import com.codeplace.bookswebapi.ui.views.home.view.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModel
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModelFactory
-import com.codeplace.bookswebapi.webapi.models.BookDto
+import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 
 class HomeActivity : AppCompatActivity() {
 
@@ -42,8 +42,8 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initObservables(){
-           viewModel.bookList.observe(this){
-               initRecyclerAdapter(it)
+           viewModel.bookList.observe(this){bookList ->
+               initRecyclerAdapter(bookList)
            }
     }
 //
@@ -52,10 +52,10 @@ class HomeActivity : AppCompatActivity() {
 //        initRecyclerAdapter()
 //    }
 
-    private fun initRecyclerAdapter(result:List<BookDto>){
+    private fun initRecyclerAdapter(bookList:List<BookDto>){
       with(binding){
           recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
-          booksListAdapter = BooksListAdapter(result)
+          booksListAdapter = BooksListAdapter(bookList)
           recyclerView.adapter = booksListAdapter
       }
         initDetailActivity()
@@ -65,19 +65,8 @@ class HomeActivity : AppCompatActivity() {
     private fun initDetailActivity(){
         booksListAdapter.onItemClick = { book ->
             val id = book.id
-            val title = book.title
-            val author = book.author
-            val currencyCode = book.currencyCode
-            val price = book.price.toString()
-            val isbn = book.isbn.toString()
-
             Intent(this, DetailsActivity::class.java).also {
                 it.putExtra("EXTRA_ID", id)
-                it.putExtra("EXTRA_TITLE", title)
-                it.putExtra("EXTRA_AUTHOR", author)
-                it.putExtra("EXTRA_CURRENCY", currencyCode)
-                it.putExtra("EXTRA_ISBN", isbn)
-                it.putExtra("EXTRA_PRICE", price)
             startActivity(it)
             }
         }

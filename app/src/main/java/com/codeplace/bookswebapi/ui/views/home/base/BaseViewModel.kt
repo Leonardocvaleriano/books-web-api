@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.codeplace.bookswebapi.webapi.models.BookDto
+import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 import kotlinx.coroutines.launch
 import retrofit2.Response
 // I need to call the api here.
@@ -25,5 +25,4 @@ open class BaseViewModel:ViewModel() {
           }
 
      }
-
 }

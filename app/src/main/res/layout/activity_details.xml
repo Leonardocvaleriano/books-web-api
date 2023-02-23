@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/grey"
-    tools:context=".ui.views.detail.view.activity.DetailsActivity"
+    tools:context=".ui.views.details.view.activity.DetailsActivity"
     >
 
     <androidx.cardview.widget.CardView
@@ -55,68 +55,68 @@
                 tools:text="Sam Moffie" />
 
             <TextView
+                android:id="@+id/txt_isbn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@id/txt_author"
+                app:layout_constraintTop_toBottomOf="@+id/txt_author"
+                tools:text="978-3-16-148410-0"
+                />
+
+            <TextView
                 android:id="@+id/txt_currency"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textSize="36sp"
-                android:paddingEnd="3dp"
-                app:layout_constraintStart_toStartOf="@id/txt_author"
-                app:layout_constraintTop_toBottomOf="@id/txt_author"
                 android:textColor="@color/black"
-                tools:text="€" />
+                android:textSize="25sp"
+                app:layout_constraintStart_toStartOf="@id/txt_author"
+                app:layout_constraintTop_toBottomOf="@id/txt_isbn"
+                tools:text="EURO" />
 
             <TextView
                 android:id="@+id/txt_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginStart="2dp"
-                android:textSize="36sp"
-                app:layout_constraintStart_toEndOf="@id/txt_currency"
-                app:layout_constraintTop_toBottomOf="@id/txt_author"
                 android:textColor="@color/black"
+                android:textSize="25sp"
+                app:layout_constraintStart_toEndOf="@id/txt_currency"
+                app:layout_constraintTop_toBottomOf="@id/txt_isbn"
                 tools:text="300,00" />
+
+
 
             <TextView
                 android:id="@+id/txt_description_title"
-                android:layout_marginTop="35dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black"
+                android:layout_marginTop="20dp"
                 android:text="@string/description_title"
-                app:layout_constraintStart_toStartOf="@id/txt_currency"
-                app:layout_constraintTop_toBottomOf="@id/txt_currency"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/txt_currency"
+                app:layout_constraintTop_toBottomOf="@+id/txt_price" />
 
-            <ScrollView
-                android:id="@+id/scroll"
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="350dp"
-                android:layout_height="250dp"
-                app:layout_constraintStart_toStartOf="@+id/txt_description_title"
+                android:layout_height="200dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txt_description_title">
 
                 <TextView
-                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
+                    android:id="@+id/txt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of set sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
-                    android:textColor="@color/black"
                     />
-            </ScrollView>
-
-            <TextView
-                android:id="@+id/txt_isbn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="22dp"
-                android:padding="10dp"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="978-3-16-148410-0"></TextView>
+            </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
