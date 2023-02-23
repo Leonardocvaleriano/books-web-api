@@ -4,7 +4,7 @@ import com.codeplace.bookswebapi.webapi.RetrofitInitializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DetailBookRepository() {
+class BookDetailsRepository() {
 
   suspend fun getDetailsBook(id:Int) = withContext(Dispatchers.Unconfined){
       val api = RetrofitInitializer().bookService

@@ -1,6 +1,6 @@
-package com.codeplace.bookswebapi.ui.views.details.models
+package com.codeplace.bookswebapi.ui.views.bookDetails.models
 
-data class DetailBookDto(
+data class BookDetailslDto(
     val author: String?,
     val currencyCode: String?,
     val description: String?,

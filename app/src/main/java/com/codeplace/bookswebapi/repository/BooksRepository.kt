@@ -3,7 +3,7 @@ import com.codeplace.bookswebapi.webapi.RetrofitInitializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
- class BookRepository(
+ class BooksRepository(
      ) {
     suspend fun getBooksList() = withContext(Dispatchers.IO){
         val api = RetrofitInitializer().bookService

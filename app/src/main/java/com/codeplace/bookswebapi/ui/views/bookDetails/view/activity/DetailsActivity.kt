@@ -1,12 +1,12 @@
-package com.codeplace.bookswebapi.ui.views.details.view.activity
+package com.codeplace.bookswebapi.ui.views.bookDetails.view.activity
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.codeplace.bookswebapi.databinding.ActivityDetailsBinding
-import com.codeplace.bookswebapi.repository.DetailBookRepository
-import com.codeplace.bookswebapi.ui.views.details.viewModel.DetailBookViewModelFactory
-import com.codeplace.bookswebapi.ui.views.details.viewModel.DetailViewModel
+import com.codeplace.bookswebapi.repository.BookDetailsRepository
+import com.codeplace.bookswebapi.ui.views.bookDetails.viewModel.BookDetailsViewModelFactory
+import com.codeplace.bookswebapi.ui.views.bookDetails.viewModel.BookDetailsViewModel
 
 
 class DetailsActivity: AppCompatActivity() {
@@ -17,10 +17,10 @@ class DetailsActivity: AppCompatActivity() {
     private val viewModel by lazy {
         // we need to create this provider, because this viewModel has a dependency with the android framework which is the repository.
         // dependency describes the relationship among activities and specifies the particular order which they need to be performed.
-        val repository = DetailBookRepository()
-        val factory = DetailBookViewModelFactory(repository)
+        val repository = BookDetailsRepository()
+        val factory = BookDetailsViewModelFactory(repository)
         val provider = ViewModelProvider(this, factory)
-        provider.get(DetailViewModel::class.java)
+        provider.get(BookDetailsViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

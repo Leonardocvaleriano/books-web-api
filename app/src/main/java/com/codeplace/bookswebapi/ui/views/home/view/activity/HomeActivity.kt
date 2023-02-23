@@ -6,11 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
-import com.codeplace.bookswebapi.repository.BookRepository
-import com.codeplace.bookswebapi.ui.views.details.view.activity.DetailsActivity
+import com.codeplace.bookswebapi.repository.BooksRepository
+import com.codeplace.bookswebapi.ui.views.bookDetails.view.activity.DetailsActivity
 import com.codeplace.bookswebapi.ui.views.home.view.adapter.BooksListAdapter
-import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModel
-import com.codeplace.bookswebapi.ui.views.home.viewModel.BookViewModelFactory
+import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModel
+import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModelFactory
 import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 
 class HomeActivity : AppCompatActivity() {
@@ -23,10 +23,10 @@ class HomeActivity : AppCompatActivity() {
     private val viewModel by lazy {
         // we need to create this provider, because this viewModel has a dependency with the android framework which is the repository.
         // dependency describes the relationship among activities and specifies the particular order which they need to be performed.
-        val repository = BookRepository()
-        val factory = BookViewModelFactory(repository)
+        val repository = BooksRepository()
+        val factory = BooksViewModelFactory(repository)
         val provider = ViewModelProvider(this, factory)
-         provider.get(BookViewModel::class.java)
+         provider.get(BooksViewModel::class.java)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
