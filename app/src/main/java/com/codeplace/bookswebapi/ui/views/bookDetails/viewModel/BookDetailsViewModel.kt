@@ -7,9 +7,9 @@ import com.codeplace.bookswebapi.ui.views.bookDetails.models.BookDetailslDto
 
 class BookDetailsViewModel(private val bookDetailsRepository: BookDetailsRepository):BaseViewModelDetail(){
     var id:Int = 0
-    val detailBookItens = MutableLiveData<BookDetailslDto>()
+    val detailBookItems = MutableLiveData<BookDetailslDto>()
 
-      fun getBook() = fetchData(detailBookItens) {
+      fun getBook() = fetchData(detailBookItems) {
           bookDetailsRepository.getDetailsBook(id)
     }
 }

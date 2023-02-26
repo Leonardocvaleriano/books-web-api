@@ -6,7 +6,7 @@ import kotlinx.coroutines.withContext
 
 class BookDetailsRepository() {
 
-  suspend fun getDetailsBook(id:Int) = withContext(Dispatchers.Unconfined){
+  suspend fun getDetailsBook(id:Int) = withContext(Dispatchers.IO){
       val api = RetrofitInitializer().bookService
       return@withContext api.getBook(id)
   }

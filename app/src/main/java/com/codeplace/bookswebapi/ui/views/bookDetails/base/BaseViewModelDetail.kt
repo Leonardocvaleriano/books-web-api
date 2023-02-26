@@ -20,7 +20,7 @@ open class BaseViewModelDetail:ViewModel() {
                     liveData.value = jsonResponse
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "fetchData", e)
+                Log.e(TAG, "fetchDataById", e)
             }
         }
 

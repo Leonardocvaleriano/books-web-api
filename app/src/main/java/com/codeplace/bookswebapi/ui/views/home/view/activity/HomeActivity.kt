@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BooksRepository
-import com.codeplace.bookswebapi.ui.views.bookDetails.view.activity.DetailsActivity
+import com.codeplace.bookswebapi.ui.views.bookDetails.view.activity.BookDetailsActivity
+import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 import com.codeplace.bookswebapi.ui.views.home.view.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModel
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModelFactory
-import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 
 class HomeActivity : AppCompatActivity() {
 
@@ -21,8 +21,6 @@ class HomeActivity : AppCompatActivity() {
      }
 
     private val viewModel by lazy {
-        // we need to create this provider, because this viewModel has a dependency with the android framework which is the repository.
-        // dependency describes the relationship among activities and specifies the particular order which they need to be performed.
         val repository = BooksRepository()
         val factory = BooksViewModelFactory(repository)
         val provider = ViewModelProvider(this, factory)
@@ -34,6 +32,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         initValues()
         initObservables()
+
      }
 
     private fun initValues(){
@@ -46,11 +45,6 @@ class HomeActivity : AppCompatActivity() {
                initRecyclerAdapter(bookList)
            }
     }
-//
-//    fun initBookList(result:JSONObject) {
-//        //mockSchedules(result)
-//        initRecyclerAdapter()
-//    }
 
     private fun initRecyclerAdapter(bookList:List<BookDto>){
       with(binding){
@@ -65,26 +59,13 @@ class HomeActivity : AppCompatActivity() {
     private fun initDetailActivity(){
         booksListAdapter.onItemClick = { book ->
             val id = book.id
-            Intent(this, DetailsActivity::class.java).also {
+            Intent(this, BookDetailsActivity::class.java).also {
                 it.putExtra("EXTRA_ID", id)
-            startActivity(it)
-            }
+                startActivity(it)
+             }
         }
     }
 }
-//  What does a mock do
-//    private fun initBooks(result:JSONObject ) {
-//        mockBooks(result)
-//        //initRecyclerAdapter()
-//    }
-
-//
-//    private fun mockBooks(result: JSONObject) {
-//        viewModel.fillBookList(result)
-//    }
-//
-
-
 
 
 
