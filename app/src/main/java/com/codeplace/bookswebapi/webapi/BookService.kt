@@ -1,6 +1,6 @@
 package com.codeplace.bookswebapi.webapi
 
-import com.codeplace.bookswebapi.ui.views.bookDetails.models.BookDetailslDto
+import com.codeplace.bookswebapi.ui.views.home.models.BookDetailslDto
 import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 import retrofit2.Response
 import retrofit2.http.GET

@@ -1,18 +1,29 @@
 package com.codeplace.bookswebapi.ui.views.home.viewModel
 import androidx.lifecycle.MutableLiveData
 import com.codeplace.bookswebapi.repository.BooksRepository
+import com.codeplace.bookswebapi.stateFlow.StateFlow
 import com.codeplace.bookswebapi.ui.views.home.base.BaseViewModel
+import com.codeplace.bookswebapi.ui.views.home.models.BookDetailslDto
 import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 
 // This class keep all the data information, even if the activity has been destroyed for any life cycle.
 
 class BooksViewModel(private val booksRepository: BooksRepository): BaseViewModel() {
 
+
     val bookList = MutableLiveData<List<BookDto>>()
-    fun getBookList() = fetchData(bookList) {
+    val bookDetailItems = MutableLiveData<BookDetailslDto>()
+    var id: Int = 0
+
+
+    fun getBookList() = fetchDataRv(bookList) {
         booksRepository.getBooksList()
     }
 
+
+    fun getBookDetail() = fetchDataBookDetail(bookDetailItems) {
+        booksRepository.getDetailsBook(id)
+    }
 
 
 //    fun fillBookList(result: JSONObject){

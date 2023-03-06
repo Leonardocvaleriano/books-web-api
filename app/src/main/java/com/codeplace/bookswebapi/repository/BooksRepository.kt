@@ -8,5 +8,13 @@ import kotlinx.coroutines.withContext
     suspend fun getBooksList() = withContext(Dispatchers.IO){
         val api = RetrofitInitializer().bookService
         return@withContext api.getBooksList()
+
+
     }
+     suspend fun getDetailsBook(id:Int) = withContext(Dispatchers.IO){
+         val api = RetrofitInitializer().bookService
+         return@withContext api.getBook(id)
+     }
+
+
  }

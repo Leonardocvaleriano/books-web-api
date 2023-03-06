@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BooksRepository
-import com.codeplace.bookswebapi.ui.views.bookDetails.view.activity.BookDetailsActivity
 import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 import com.codeplace.bookswebapi.ui.views.home.view.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModel
