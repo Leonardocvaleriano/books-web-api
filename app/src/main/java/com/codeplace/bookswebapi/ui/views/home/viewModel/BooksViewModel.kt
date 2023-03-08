@@ -11,20 +11,17 @@ import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 class BooksViewModel(private val booksRepository: BooksRepository): BaseViewModel() {
 
 
-    val bookList = MutableLiveData<List<BookDto>>()
-    val bookDetailItems = MutableLiveData<BookDetailslDto>()
+    val bookList = MutableLiveData<StateFlow>()
+    val bookDetailItems = MutableLiveData<StateFlow>()
     var id: Int = 0
-
 
     fun getBookList() = fetchDataRv(bookList) {
         booksRepository.getBooksList()
     }
 
-
     fun getBookDetail() = fetchDataBookDetail(bookDetailItems) {
         booksRepository.getDetailsBook(id)
     }
-
 
 //    fun fillBookList(result: JSONObject){
 //       val resultJSONArray =  result.getJSONArray("results")

@@ -8,18 +8,11 @@ import retrofit2.http.Path
 
 interface BookService {
 
-    // Call the verb using the end point which together with the fun getall,
-    // gonna be responsable to get the list of books as gson in the web.
 
-    // End point
     @GET("books")
     suspend fun getBooksList(): Response<List<BookDto>?>
 
     @GET("book/{id}")
     suspend fun getBook(@Path("id") id:Int):Response<BookDetailslDto>
 
-//    @PATCH("book/{id}")
-//    suspend fun updateBook(@Path("id") id:Int, @Body params: BookDto):Response<List<BookDto>?>
-
-    //DELETE
 }

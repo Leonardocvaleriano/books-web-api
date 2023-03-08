@@ -1,12 +1,15 @@
 package com.codeplace.bookswebapi.ui.views.home.view.activity
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codeplace.bookswebapi.databinding.ActivityMainBinding
 import com.codeplace.bookswebapi.repository.BooksRepository
+import com.codeplace.bookswebapi.stateFlow.StateFlow
 import com.codeplace.bookswebapi.ui.views.home.models.BookDto
 import com.codeplace.bookswebapi.ui.views.home.view.adapter.BooksListAdapter
 import com.codeplace.bookswebapi.ui.views.home.viewModel.BooksViewModel
@@ -40,9 +43,20 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun initObservables(){
-           viewModel.bookList.observe(this){bookList ->
-               initRecyclerAdapter(bookList)
+           viewModel.bookList.observe(this){
+               when(it){
+                   is StateFlow.Loading -> loading(it.loading)
+                   is StateFlow.Success<*>-> initRecyclerAdapter(it.data as List<BookDto>)
+                   is StateFlow.Error -> showError(it.errorMessage)
+               }
            }
+    }
+    private fun loading(loading: Boolean){
+        binding.progressBar.visibility = if (loading) View.VISIBLE else View.GONE
+    }
+
+    private fun showError(error:String){
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 
     private fun initRecyclerAdapter(bookList:List<BookDto>){
@@ -60,8 +74,24 @@ class HomeActivity : AppCompatActivity() {
             val id = book.id
             Intent(this, BookDetailsActivity::class.java).also {
                 it.putExtra("EXTRA_ID", id)
-                startActivity(it)
+                startActivityForResult(it, REQUEST_CODE)
              }
+        }
+    }
+
+    companion object{
+        const val REQUEST_CODE = 1
+        const val RESULT_CODE = 2
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE && resultCode == RESULT_CODE){
+            if (data!!.hasExtra("EXTRA_ERROR")){
+              val error = data.getStringExtra("EXTRA_ERROR")
+                Toast.makeText(this, "$error", Toast.LENGTH_SHORT).show()
+                }
         }
     }
 }

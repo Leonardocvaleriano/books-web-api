@@ -7,5 +7,4 @@ data class BookDto(
     val isbn: String?,
     val price: Double?,
     val currencyCode: String?,
-    //val description: String?
 )
